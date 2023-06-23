@@ -83,7 +83,7 @@ const MintGrid = () => {
 
     const [pending, setPending] = useState(false)
     const calculateTimeLeft = () => {
-        const difference = new Date('2023-06-04') - new Date();
+        const difference = new Date('2023-06-28') - new Date();
         let timeLeft = {};
 
         if (difference > 0) {
@@ -109,8 +109,12 @@ const MintGrid = () => {
     });
 
     const formatTime = num => {
-        return num.toString().padStart(2, '0');
+        if (typeof num !== 'undefined' && num !== null) {
+            return num.toString().padStart(2, '0');
+        }
+        return '';
     };
+
     const loadTotalInvestment = async () => {
         const _totalInvestment = await presaleContract(chainIdToUse())
             .methods.totalInvestment()
